@@ -135,7 +135,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             outterView.backgroundColor = outterViewColor
         }
     }
-    
+
     private var outterView: UIView = UIView()
     private var isOutterViewEnabled: Bool = true
     fileprivate var menuPosition:ENSideMenuPosition = .left
@@ -167,7 +167,6 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
 
     :returns: An initialized `ENSideMenu` object, added to the specified view.
     */
-    public init(sourceView: UIView, menuPosition: ENSideMenuPosition, blurStyle: UIBlurEffectStyle = .light) {
     public init(sourceView: UIView, menuPosition: ENSideMenuPosition, blurStyle: UIBlurEffectStyle = .light, isOutterViewEnabled: Bool = true) {
         super.init()
         self.isOutterViewEnabled = isOutterViewEnabled
@@ -216,8 +215,6 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
 
     :returns: An initialized `ENSideMenu` object, added to the specified view, containing the specified menu view controller.
     */
-    public convenience init(sourceView: UIView, menuViewController: UIViewController, menuPosition: ENSideMenuPosition, blurStyle: UIBlurEffectStyle = .light) {
-        self.init(sourceView: sourceView, menuPosition: menuPosition, blurStyle: blurStyle)
     public convenience init(sourceView: UIView, menuViewController: UIViewController, menuPosition: ENSideMenuPosition, blurStyle: UIBlurEffectStyle = .light, isOutterViewEnabled: Bool = true) {
         self.init(sourceView: sourceView, menuPosition: menuPosition, blurStyle: blurStyle, isOutterViewEnabled: isOutterViewEnabled)
         self.menuViewController = menuViewController
@@ -255,7 +252,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         }
 
     }
-    
+
     fileprivate func setupBackgroundView() {
         outterView = UIView(frame: CGRect(x: 0, y: 0, width: sourceView.frame.width, height: sourceView.frame.height))
         outterView.backgroundColor = outterViewColor
@@ -271,7 +268,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             }
         }
     }
-    
+
     fileprivate func setupMenuView() {
 
         // Configure side menu container
@@ -338,7 +335,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
 
             let collisionBehavior = UICollisionBehavior(items: [sideMenuContainerView])
             collisionBehavior.addBoundary(withIdentifier: "menuBoundary" as NSCopying, from: CGPoint(x: boundaryPointX, y: boundaryPointY),
-                                          to: CGPoint(x: boundaryPointX, y: height))
+                to: CGPoint(x: boundaryPointX, y: height))
             animator.addBehavior(collisionBehavior)
 
             let pushBehavior = UIPushBehavior(items: [sideMenuContainerView], mode: UIPushBehaviorMode.instantaneous)
@@ -357,9 +354,9 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
             }
             else {
                 destFrame = CGRect(x: (shouldOpen) ? width-menuWidth : width+2.0,
-                                   y: 0,
-                                   width: menuWidth,
-                                   height: height)
+                                        y: 0,
+                                        width: menuWidth,
+                                        height: height)
             }
 
             UIView.animate(
@@ -376,7 +373,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
                     }
             })
         }
-        
+
         if (shouldOpen) {
             if isOutterViewEnabled {
                 showBackgroundView()
@@ -512,16 +509,16 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         }
     }
     /**
-     Shows the side menu if the menu is hidden.
-     */
+    Shows the side menu if the menu is hidden.
+    */
     open func showSideMenu () {
         if (!isMenuOpen) {
             toggleMenu(true)
         }
     }
     /**
-     Hides the side menu if the menu is showed.
-     */
+    Hides the side menu if the menu is showed.
+    */
     @objc open func hideSideMenu () {
         if (isMenuOpen) {
             toggleMenu(false)
@@ -543,6 +540,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         })
     }
 }
+
 extension ENSideMenu: UIDynamicAnimatorDelegate {
     public func dynamicAnimatorDidPause(_ animator: UIDynamicAnimator) {
         if (isMenuOpen) {
