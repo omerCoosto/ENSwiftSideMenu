@@ -18,7 +18,7 @@ public protocol ENSideMenuDelegate: class {
 
 public protocol ENSideMenuProtocol: class {
     var sideMenu : ENSideMenu? { get }
-    func setContentViewController(_ contentViewController: UIViewController)
+    func setContentViewController(_ contentViewController: UIViewController, shouldToggleMenu: Bool)
 }
 
 public enum ENSideMenuAnimation : Int {
